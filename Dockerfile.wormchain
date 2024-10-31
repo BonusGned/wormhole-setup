@@ -1,0 +1,9 @@
+FROM golang:1.21.9 as builder
+WORKDIR /app
+RUN git clone https://github.com/wormhole-foundation/wormhole.git
+WORKDIR /app/wormhole/wormchain
+RUN make build/wormchaind
+
+FROM ubuntu:latest
+COPY --from=builder /app/wormhole/wormchain/build/wormchaind /wormchain/bin/wormchaind
+ENTRYPOINT ["/wormchain/bin/wormchaind"]

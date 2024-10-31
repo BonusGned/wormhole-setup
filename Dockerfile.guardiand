@@ -1,0 +1,9 @@
+FROM golang:1.21.9 as builder
+WORKDIR /app
+RUN git clone https://github.com/wormhole-foundation/wormhole.git
+WORKDIR /app/wormhole
+RUN make node
+
+FROM ubuntu:latest
+COPY --from=builder /app/wormhole/build/bin/guardiand /guardiand
+ENTRYPOINT ["/guardiand"]

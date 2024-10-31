@@ -1,0 +1,54 @@
+version: '3'
+services:
+  guardiand:
+    build:
+      context: .
+      dockerfile: node/Dockerfile
+    cap_add:
+      - IPC_LOCK
+    ports:
+      - "8999:8999/udp"
+      - "8996:8996/udp"
+    volumes:
+      - ./keys/node.key:/node.key
+      - ./keys/guardian.key:/guardian.key
+      - ./configs/guardiand.yaml:/guardiand.yaml
+    command: 
+      - /guardiand
+      - node
+      - --configFile=/guardiand.yaml
+      - --nodeKey=/node.key
+      - --guardianKey=/guardian.key
+      - --bscRPC=https://rpc.ankr.com/bsc_testnet_chapel
+      - --fantomRPC=https://rpc.ankr.com/fantom_testnet
+      # - --wormchainURL=wormchain:9090
+    # depends_on:
+    #   - wormchain
+  #
+  # wormchain:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.wormchain
+  #   volumes:
+  #     - ./configs/wormchain:/wormchain/config
+  #     - ./keys/wormchain.key:/wormchain/config/priv_validator_key.json
+  #   command:
+  #     - /wormchain/bin/wormchaind
+  #     - start
+  #     - --home=/wormchain
+  #   ports:
+  #     - "26656:26656"
+  #     - "26657:26657"
+  #     - "9090:9090"
+  spy:
+    image: ghcr.io/wormhole-foundation/guardiand:latest
+    entrypoint: /guardiand
+    command:
+      - spy
+      - --nodeKey=/node.key
+      - --spyRPC=[::]:7073
+      - --env=testnet
+    volumes:
+      - ./keys/node.key:/node.key
+    ports:
+      - "7073:7073"

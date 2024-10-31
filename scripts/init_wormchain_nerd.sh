@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+nerdctl run --rm -v $(pwd)/configs/wormchain:/wormchain ghcr.io/wormhole-foundation/guardiand:latest wormchaind init mynode --chain-id wormchain --home /wormchain
