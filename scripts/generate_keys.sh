@@ -8,5 +8,5 @@ docker run --rm --cap-add=IPC_LOCK -v $(pwd)/keys:/keys ghcr.io/wormhole-foundat
 docker run --rm --cap-add=IPC_LOCK -v $(pwd)/keys:/keys ghcr.io/wormhole-foundation/guardiand:latest keygen --desc "Guardian key" /keys/guardian.key
 
 # Generate wormchain key
-docker run --rm --cap-add=IPC_LOCK -v $(pwd)/keys:/keys wormchaind:local keys add wormchain --keyring-backend file --home /keys
-docker run --rm --cap-add=IPC_LOCK -v $(pwd)/keys:/keys wormchaind:local keys export wormchain --keyring-backend file --home /keys > /keys/wormchain.key
+# docker run --rm --cap-add=IPC_LOCK -v $(pwd)/keys:/keys wormchaind:local keys add wormchain --keyring-backend file --home /keys
+# docker run --rm --cap-add=IPC_LOCK -v $(pwd)/keys:/keys wormchaind:local keys export wormchain --keyring-backend file --home /keys > /keys/wormchain.key
