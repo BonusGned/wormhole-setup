@@ -37,7 +37,7 @@ services:
       - ./configs/wormchain:/wormchain/config
     command:
       - start
-      - --home=/wormchain
+      - --home=/wormchain/bin
     ports:
       - "26656:26656"
       - "26657:26657"
