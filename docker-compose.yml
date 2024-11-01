@@ -55,3 +55,7 @@ services:
   #     - ./keys/node.key:/node.key
   #   ports:
   #     - "7073:7073"
+  #
+  
+volumes:
+  wormchain_data:
