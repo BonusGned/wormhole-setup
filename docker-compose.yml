@@ -1,32 +1,32 @@
 version: '3'
 services:
-  guardiand:
-    build:
-      context: .
-      dockerfile: Dockerfile.guardiand
-    cap_add:
-      - IPC_LOCK
-    ports:
-      - "8999:8999/udp"
-      - "8996:8996/udp"
-    volumes:
-      - ./keys/node.key:/node.key
-      - ./keys/guardian.key:/guardian.key
-      - ./keys/wormchain.key:/wormchain.key
-      - ./configs/guardiand.yaml:/node/guardiand.yaml
-    command: 
-      - /guardiand
-      - node
-      # - --configFile=/guardiand.yaml
-      - --nodeKey=/node.key
-      - --guardianKey=/guardian.key
-      - --bscRPC=https://rpc.ankr.com/bsc_testnet_chapel
-      - --fantomRPC=https://rpc.ankr.com/fantom_testnet
-      - --wormchainURL=wormchain:9090
-      - --accountantKeyPath=/wormchain.key
-      - --accountantKeyPassPhrase=wormworm
-    depends_on:
-      - wormchain
+  # guardiand:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.guardiand
+  #   cap_add:
+  #     - IPC_LOCK
+  #   ports:
+  #     - "8999:8999/udp"
+  #     - "8996:8996/udp"
+  #   volumes:
+  #     - ./keys/node.key:/node.key
+  #     - ./keys/guardian.key:/guardian.key
+  #     - ./keys/wormchain.key:/wormchain.key
+  #     - ./configs/guardiand.yaml:/node/guardiand.yaml
+  #   command: 
+  #     - /guardiand
+  #     - node
+  #     # - --configFile=/guardiand.yaml
+  #     - --nodeKey=/node.key
+  #     - --guardianKey=/guardian.key
+  #     - --bscRPC=https://rpc.ankr.com/bsc_testnet_chapel
+  #     - --fantomRPC=https://rpc.ankr.com/fantom_testnet
+  #     - --wormchainURL=wormchain:9090
+  #     - --accountantKeyPath=/wormchain.key
+  #     - --accountantKeyPassPhrase=wormworm
+  #   depends_on:
+  #     - wormchain
   
   wormchain:
     build:
@@ -36,9 +36,14 @@ services:
       - wormchain_data:/wormchain/data
       - ./configs/wormchain:/wormchain/config
     command:
-      - /wormchain/bin/wormchaind
-      - start
-      - --home=/wormchain
+      - sh
+      - -c
+      - |
+        if [ ! -s /wormchain/data/priv_validator_state.json ]; then
+          echo '{"height": "0", "round": 0, "step": 0}' > /wormchain/data/priv_validator_state.json
+          chmod 600 /wormchain/data/priv_validator_state.json
+        fi
+        /wormchain/bin/wormchaind start --home=/wormchain
     ports:
       - "26656:26656"
       - "26657:26657"
