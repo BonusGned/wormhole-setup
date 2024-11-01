@@ -174,17 +174,7 @@
 			},
 			"last_total_power": "0",
 			"last_validator_powers": [],
-			"validators": [
-				{
-					"address": "C5577579C3C7551456EF8B916E74266C754B38CE",
-					"name": "jumpcrypto",
-					"power": "1",
-					"pub_key": {
-						"type": "tendermint/PubKeyEd25519",
-						"value": "mPxH+O3SrGF6XungxMs45T48jyOKeeQOr8D9SxxPacs="
-					}
-				}
-			],
+			"validators": [],
 			"delegations": [],
 			"unbonding_delegations": [],
 			"redelegations": [],
