@@ -33,6 +33,7 @@ services:
       context: .
       dockerfile: Dockerfile.wormchain
     volumes:
+      - ./configs/wormchain/data/priv_validator_state.json:/wormchain/data/priv_validator_state.json
       - ./configs/wormchain:/wormchain/config
     command:
       - start
