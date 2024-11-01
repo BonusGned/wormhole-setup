@@ -14,13 +14,14 @@ services:
       - ./keys/guardian.key:/guardian.key
       - ./configs/guardiand.yaml:/guardiand.yaml
     command: 
-      - /guardiand
-      - node
-      - --configFile=/guardiand.yaml
-      - --nodeKey=/node.key
-      - --guardianKey=/guardian.key
-      - --bscRPC=https://rpc.ankr.com/bsc_testnet_chapel
-      - --fantomRPC=https://rpc.ankr.com/fantom_testnet
+      sleep infinity
+      # - /guardiand
+      # - node
+      # - --configFile=/guardiand.yaml
+      # - --nodeKey=/node.key
+      # - --guardianKey=/guardian.key
+      # - --bscRPC=https://rpc.ankr.com/bsc_testnet_chapel
+      # - --fantomRPC=https://rpc.ankr.com/fantom_testnet
       # - --wormchainURL=wormchain:9090
     # depends_on:
     #   - wormchain

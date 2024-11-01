@@ -40,4 +40,4 @@ COPY --from=build /bin/bash /bin/dash /bin/sh /bin/
 # finally copy the guardian executable
 COPY --from=build /guardiand .
 
-ENTRYPOINT ["/guardiand"]
+# ENTRYPOINT ["/guardiand"]
