@@ -12,7 +12,6 @@ services:
     volumes:
       - ./keys/node.key:/node.key
       - ./keys/guardian.key:/guardian.key
-      - ./keys/guardian.key:/guardian.key
       - ./keys/wormchain.key:/wormchain.key
       - ./configs/guardiand.yaml:/guardiand.yaml
     command: 
