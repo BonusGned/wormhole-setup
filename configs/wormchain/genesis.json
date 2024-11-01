@@ -229,7 +229,12 @@
 					"keys": ["mPxH+O3SrGF6XungxMs45T48jyOKeeQOr8D9SxxPacs="]
 				}
 			],
-			"config": null,
+			"config": {
+				"chain_id": 3104,
+				"governance_chain": 1,
+				"governance_emitter": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=",
+				"guardian_set_expiration": 86400
+			},
 			"replayProtectionList": [],
 			"sequenceCounterList": [],
 			"consensusGuardianSetIndex": {
