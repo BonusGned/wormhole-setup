@@ -7,6 +7,6 @@ nerdctl run --rm --cap-add=IPC_LOCK -v $(pwd)/keys:/keys ghcr.io/wormhole-founda
 # Generate guardian key
 nerdctl run --rm --cap-add=IPC_LOCK -v $(pwd)/keys:/keys ghcr.io/wormhole-foundation/guardiand:latest keygen --desc "Guardian key" /keys/guardian.key
 
-# # Generate wormchain key
-# nerdctl run --rm --cap-add=IPC_LOCK -v $(pwd)/keys:/keys wormhole-testnet-wormchain:latest keys add wormchain --keyring-backend file --home /keys
-# nerdctl run --rm --cap-add=IPC_LOCK -v $(pwd)/keys:/keys wormhole-testnet-wormchain:latest keys export wormchain --keyring-backend file --home /keys > /keys/wormchain.key
+# Generate wormchain key
+# nerdctl run --rm --cap-add=IPC_LOCK -v $(pwd)/keys:/keys ghcr.io/wormhole-foundation/wormchaind:latest keys add wormchain --keyring-backend file --home /keys
+# nerdctl run --rm --cap-add=IPC_LOCK -v $(pwd)/keys:/keys ghcr.io/wormhole-foundation/wormchaind:latest keys export wormchain --keyring-backend file --home /keys > /keys/wormchain.key

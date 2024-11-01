@@ -6,4 +6,4 @@ RUN cd tools && go mod download
 
 FROM ubuntu:latest
 COPY --from=builder /app/wormhole/build/bin/guardiand /guardiand
-ENTRYPOINT ["/guardiand"]
+# ENTRYPOINT ["/guardiand"]
