@@ -13,11 +13,11 @@ services:
       - ./keys/node.key:/node.key
       - ./keys/guardian.key:/guardian.key
       - ./keys/wormchain.key:/wormchain.key
-      - ./configs/guardiand.yaml:/guardiand.yaml
+      - ./configs/guardiand.yaml:/node/guardiand.yaml
     command: 
       - /guardiand
       - node
-      - --configFile=/guardiand.yaml
+      # - --configFile=/guardiand.yaml
       - --nodeKey=/node.key
       - --guardianKey=/guardian.key
       - --bscRPC=https://rpc.ankr.com/bsc_testnet_chapel
@@ -35,7 +35,6 @@ services:
     volumes:
       - ./configs/wormchain:/wormchain/config
     command:
-      - /wormchain/bin/wormchaind
       - start
       - --home=/wormchain
     ports:
