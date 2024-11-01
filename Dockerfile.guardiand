@@ -1,10 +1,21 @@
 FROM golang:1.21.9 as builder
 WORKDIR /app
 RUN git clone https://github.com/wormhole-foundation/wormhole.git
+
+# Download wasmvm library from GitHub releases
+RUN wget https://github.com/CosmWasm/wasmvm/releases/download/v2.1.3/libwasmvm.x86_64.so \
+    && chmod +x libwasmvm.x86_64.so \
+    && mv libwasmvm.x86_64.so /usr/lib/libwasmvm.x86_64.so
+
 WORKDIR /app/wormhole
 RUN cd tools && go mod download
 RUN make node
 
 FROM ubuntu:latest
+
+# Copy the libwasmvm shared library and set up library path
+COPY --from=builder /usr/lib/libwasmvm.x86_64.so /usr/lib/libwasmvm.x86_64.so
+ENV LD_LIBRARY_PATH=/usr/lib
+
 COPY --from=builder /app/wormhole/build/bin/guardiand /guardiand
 # ENTRYPOINT ["/guardiand"]
