@@ -6,6 +6,6 @@ RUN cd tools && go mod download
 RUN make node
 
 FROM ubuntu:latest
-COPY --from=builder /app/wormhole/build/guardiand /guardiand
+COPY --from=builder /app/wormhole/build/bin/guardiand /guardiand
 RUN setcap cap_ipc_lock=+ep /guardiand
 # ENTRYPOINT ["/guardiand"]
