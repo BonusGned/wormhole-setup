@@ -222,14 +222,25 @@
 			"gen_msgs": []
 		},
 		"wormhole": {
-			"guardianSetList": [],
+			"guardianSetList": [
+				{
+					"expirationTime": 0,
+					"index": 0,
+					"keys": ["mPxH+O3SrGF6XungxMs45T48jyOKeeQOr8D9SxxPacs="]
+				}
+			],
 			"config": null,
 			"replayProtectionList": [],
 			"sequenceCounterList": [],
 			"consensusGuardianSetIndex": {
 				"index": 0
 			},
-			"guardianValidatorList": [],
+			"guardianValidatorList": [
+				{
+					"guardianKey": "mPxH+O3SrGF6XungxMs45T48jyOKeeQOr8D9SxxPacs=",
+					"validatorAddr": "C5577579C3C7551456EF8B916E74266C754B38CE"
+				}
+			],
 			"allowedAddresses": [],
 			"wasmInstantiateAllowlist": [],
 			"ibcComposabilityMwContract": {
