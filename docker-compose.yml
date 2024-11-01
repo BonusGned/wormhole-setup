@@ -33,11 +33,10 @@ services:
       context: .
       dockerfile: Dockerfile.wormchain
     volumes:
-
       - wormchain_data:/wormchain/data
-      - ./configs/wormchain/data/priv_validator_state.json:/wormchain/data/priv_validator_state.json:ro
       - ./configs/wormchain:/wormchain/config
     command:
+      - /wormchain/bin/wormchaind
       - start
       - --home=/wormchain
     ports:
